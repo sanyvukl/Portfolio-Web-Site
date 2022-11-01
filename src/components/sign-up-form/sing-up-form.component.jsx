@@ -4,6 +4,7 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import "./sign-up-form.style.scss";
 
+
 const defaultFormValue = {
   displayName: "",
   email: "",
@@ -14,6 +15,7 @@ const defaultFormValue = {
 const SingUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormValue);
   const { displayName, email, password, confirmPassword } = formFields;
+  
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
@@ -21,7 +23,7 @@ const SingUpForm = () => {
   const resetFormFields = () => {
     setFormFields(defaultFormValue);
   }
-
+  
   useEffect(() => {
     console.log(formFields);
   }, [formFields]);
@@ -49,7 +51,7 @@ const SingUpForm = () => {
   return (
     <div className="sign-up-container">
       <h2>Don't have an account?</h2>
-      <span>Sign up with email and password</span>
+      <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
