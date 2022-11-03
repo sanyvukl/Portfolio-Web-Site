@@ -1,14 +1,14 @@
+import { useContext } from "react";
 import Button from "../button/button.component";
 import "./cart-dropdown.style.scss";
-import { CartContext } from "../../contexts/cart-products.context";
-import { useContext } from "react";
+// import { CartContext } from "../../contexts/cart-products.context";
 
 const CartDropdown = ({ isCartOpen }) => {
-    const { cartProducts } = useContext(CartContext);
+    // const { cartProducts } = useContext(CartContext);
     return (
-        <div className={`cart-dropdown-container ${isCartOpen && "active"}`}>
+        <div className="cart-dropdown-container">
             <div className="cart-items-container">
-                {cartProducts.map(({ id, name, imageUrl, price, }) => {
+                {/* {cartProducts.map(({ id, name, imageUrl, price, }) => {
                     return (
                         <div key={id} className="cart-item" >
                             <img className="cart-item-image" src={imageUrl} alt={name} />
@@ -18,7 +18,7 @@ const CartDropdown = ({ isCartOpen }) => {
                             </div>
                         </div>
                     )
-                })};
+                })}; */}
             </div>
             <Button>GO TO CHEKOUT</Button>
         </div>
