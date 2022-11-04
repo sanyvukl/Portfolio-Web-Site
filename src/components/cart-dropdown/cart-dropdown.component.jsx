@@ -1,24 +1,22 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Button from "../button/button.component";
+import CartItem from "../cart-item/cart-item.component";
+import { CartContext } from "../../contexts/cart.context";
 import "./cart-dropdown.style.scss";
-// import { CartContext } from "../../contexts/cart-products.context";
 
-const CartDropdown = ({ isCartOpen }) => {
-    // const { cartProducts } = useContext(CartContext);
+
+const CartDropdown = () => {
+    const { cartItems, setCartItems } = useContext(CartContext);
+
     return (
         <div className="cart-dropdown-container">
             <div className="cart-items-container">
-                {/* {cartProducts.map(({ id, name, imageUrl, price, }) => {
-                    return (
-                        <div key={id} className="cart-item" >
-                            <img className="cart-item-image" src={imageUrl} alt={name} />
-                            <div className="cart-item-description">
-                                <div className="cart-item-name">{name}</div>
-                                <div className="cart-item-price">1 x ${price}</div>
-                            </div>
-                        </div>
-                    )
-                })}; */}
+                {cartItems.length ?
+                    (cartItems.map((item) => (
+                        <CartItem key={item.id} cartItem={item} />
+                    )))
+                    : <div className="empty-message">Your cart is empty</div>
+                }
             </div>
             <Button>GO TO CHEKOUT</Button>
         </div>
@@ -26,3 +24,15 @@ const CartDropdown = ({ isCartOpen }) => {
 };
 
 export default CartDropdown;
+
+
+ //  ? (cartItems.forEach(el => el.quantity = 0),
+                    //     cartItems.map((item, index) => {
+                    //         if (item.quantity === 0) {
+                    //             item.quantity++;
+                    //             return <CartItem key={index} cartItem={item} />;
+                    //         }
+                    //         if (cartItems.includes(item) && item.quantity > 0) {
+                    //             item.quantity++;
+                    //         }
+                    //     }))
