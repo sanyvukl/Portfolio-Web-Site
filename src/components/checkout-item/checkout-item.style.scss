@@ -1,0 +1,28 @@
+.checkout-item {
+    display: block;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+
+    .checkout-item-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: left;
+
+      .checkout-item-image {
+        max-width: 20%;
+        min-height: 180px;
+        object-fit: cover;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      span {
+        width: 20%;
+        text-align: center;
+      }
+    }
+  }

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, Children } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { onAuthStateChangedListener } from "../utils/firebase/firebase.utils";
 import { createUserDocumentFromAuth } from "../utils/firebase/firebase.utils";
 
@@ -16,8 +16,8 @@ export const UserProvider = ({ children }) => {
                 await createUserDocumentFromAuth(user);
             }
             setCurrentUser(user);
-            console.log(`User is Signed ${user ? "IN" : "OUT"}`);
-            console.log(user);
+            // console.log(`User is Signed ${user ? "IN" : "OUT"}`);
+            // console.log(user);
         });
 
         return unsubscribe;
