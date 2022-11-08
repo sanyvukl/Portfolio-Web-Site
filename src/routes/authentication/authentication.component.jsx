@@ -1,15 +1,15 @@
 import React from "react";
 import SingUpForm from "../../components/sign-up-form/sing-up-form.component";
 import SingInForm from "../../components/sign-in-form/sing-in-form.component";
-import "./authentication.style.scss";
+import {AuthenticationContainer} from "./authentication.style";
 
 const Authentication = () => {
 
     return (
-        <div className="authentication-container">
+        <AuthenticationContainer>
             <SingInForm />
             <SingUpForm />
-        </div>
+        </AuthenticationContainer>
     );
 }
 export default Authentication;

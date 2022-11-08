@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 
 import CategoriesPreview from "../categories-previev/categories-preview.component";
 import Category from "../../components/category/category.component";
-import "./shop.style.scss";
 
 const Shop = () => {
     return (
@@ -11,7 +10,6 @@ const Shop = () => {
             <Route path=":category" element={<Category />} />
         </Routes>
     );
-
 };
 
 export default Shop;

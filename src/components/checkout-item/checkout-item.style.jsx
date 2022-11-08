@@ -1,4 +1,6 @@
-.checkout-item-container {
+import styled from "styled-components";
+
+export const CheckoutItemContainer = styled.div`
   width: 100%;
   display: flex;
   min-height: 100px;
@@ -7,16 +9,6 @@
   font-size: 20px;
   align-items: center;
 
-  .image-container {
-    width: 23%;
-    padding-right: 15px;
-    margin-bottom: 2px;
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-  }
   .name,
   .quantity,
   .price {
@@ -34,10 +26,20 @@
       margin: 0 10px;
     }
   }
-
-  .remove-button {
+`;
+export const CheckoutImageContainer = styled.div`
+    width: 23%;
+    padding-right: 15px;
+    margin-bottom: 2px;
+    
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+`; 
+export const RemoveButton = styled.div`
     padding-left: 12px;
     user-select: none;
     cursor: pointer;
-  }
-}
+`;

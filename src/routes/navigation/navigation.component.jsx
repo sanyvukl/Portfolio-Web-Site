@@ -7,7 +7,7 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
-import {NavigationContainer, LogoContainer, NavLinks, NavLink} from "./navigation.style";
+import { NavigationContainer, LogoContainer, NavLinks, NavLink } from "./navigation.style";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
