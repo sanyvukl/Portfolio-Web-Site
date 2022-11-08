@@ -24,9 +24,8 @@ const SingUpForm = () => {
     setFormFields(defaultFormValue);
   }
 
-  useEffect(() => {
-    console.log(formFields);
-  }, [formFields]);
+  // useEffect(() => {
+  // }, [formFields]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -38,7 +37,6 @@ const SingUpForm = () => {
       const { user } = await createAuthUserWithEmailAndPassword(email, password);
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
-      console.log(user);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");

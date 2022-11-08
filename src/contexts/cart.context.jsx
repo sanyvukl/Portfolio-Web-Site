@@ -32,20 +32,6 @@ const addCartItem = (cartItems, productToAdd) => {
     } else {
         return [...cartItems, { ...productToAdd, quantity: 1 }];
     }
-
-    // My clean code
-    // if (productToAdd.quantity === undefined) {
-    //     productToAdd.quantity = 0;
-    // }
-    // if (cartItems.includes(productToAdd) && productToAdd.quantity > 0) {
-    //     productToAdd.quantity++;
-    //     console.log(cartItems);
-    //     return [...cartItems];
-    // }
-    // if (productToAdd.quantity < 1 && productToAdd.quantity !== undefined) {
-    //     productToAdd.quantity++;
-    //     return [...cartItems, productToAdd];
-    // }
 };
 const clearCartItem = (cartItems, productToRemove) => {
     const existingCartItem = cartItems.find((cartItem) => cartItem.id === productToRemove.id);
