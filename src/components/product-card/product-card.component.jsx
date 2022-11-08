@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "./product-card.style.scss";
+import {ProductCardContainer, ProductFooter} from "./product-card.style";
 import Button, { BUTTONS_TYPE_CLASSES } from "../button/button.component";
 import { CartContext } from "../../contexts/cart.context";
 
@@ -10,14 +10,14 @@ const ProductCard = ({ product }/* destructured */) => {
     const addProductToCart = () => addItemToCart(product);
 
     return (
-        <div className="product-card-container">
+        <ProductCardContainer>
             <img src={imageUrl} alt={name} />
-            <div className="product-footer">
+            <ProductFooter>
                 <span className="product-name">{name}</span>
                 <span className="product-price">${price}</span>
-            </div>
+            </ProductFooter>
             <Button buttonType={BUTTONS_TYPE_CLASSES.inverted} onClick={addProductToCart}>Add to cart</Button>
-        </div>
+        </ProductCardContainer>
     )
 };
 

@@ -1,4 +1,6 @@
-.product-card-container {
+import styled from "styled-components";
+
+export const ProductCardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -31,8 +33,8 @@
       display: flex;
     }
   }
-
-  .product-footer {
+`;
+export const ProductFooter = styled.div`
     width: 100%;
     height: 5%;
     display: flex;
@@ -48,6 +50,5 @@
 
     .product-price {
       // width: 12%;
-    }
-  }
-}
+    }  
+`;
