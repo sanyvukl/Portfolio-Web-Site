@@ -4,13 +4,13 @@ import { createAction } from "../utils/reducer/reducer.utils";
 export const CartContext = createContext({
     isCartOpen: false,
     cartItems: [
-        {
-            id: "",
-            name: "",
-            imageUrl: "",
-            price: "",
-            quantity: "",
-        },
+        // {
+        //     id: "",
+        //     name: "",
+        //     imageUrl: "",
+        //     price: "",
+        //     quantity: "",
+        // },
     ],
     addItemToCart: () => [],
     removeCartItem: () => [],
@@ -139,7 +139,7 @@ export const CartProvider = ({ children }) => {
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
- // useEffect(() => {
+
     //     dispatch({ type: CART_ACTION_TYPES.SET_CART_COUNT });
     // }, [cartItems, cartTotal]);
     // useEffect(() => {

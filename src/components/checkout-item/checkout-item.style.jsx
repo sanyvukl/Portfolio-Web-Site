@@ -31,13 +31,12 @@ export const CheckoutImageContainer = styled.div`
     width: 23%;
     padding-right: 15px;
     margin-bottom: 2px;
-    
     img {
       display: block;
       width: 100%;
       height: 100%;
     }
-`; 
+`;
 export const RemoveButton = styled.div`
     padding-left: 12px;
     user-select: none;

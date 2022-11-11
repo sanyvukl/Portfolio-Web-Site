@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
@@ -22,10 +22,7 @@ const SingUpForm = () => {
   };
   const resetFormFields = () => {
     setFormFields(defaultFormValue);
-  }
-
-  // useEffect(() => {
-  // }, [formFields]);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -44,7 +41,7 @@ const SingUpForm = () => {
         console.log("user creation encountered an error ", error);
       }
     }
-  }
+  };
 
   return (
     <SignUpContainer>

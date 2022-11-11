@@ -51,13 +51,15 @@ export const getCategoriesAndDocuments = async() => {
   const q = query(collectionRef);
 
   const querySnapShot = await getDocs(q);
-  const categoryMap = querySnapShot.docs.reduce((acc, docSnapshot)=>{
-    const {title, items} = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
+  return querySnapShot.docs.map(docSnapshot=>docSnapshot.data());
+  // const categoryMap = 
+    // .reduce((acc, docSnapshot)=>{
+    // const {title, items} = docSnapshot.data();
+    // acc[title.toLowerCase()] = items;
+    // return acc;
+  // }, {});
 
-  return categoryMap;
+  // return categoryMap;
 };
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) =>{
   if(!userAuth)return;
@@ -94,14 +96,6 @@ export const signInUserWithEmailAndPassword = async(email, password) =>{
 };
 export const signOutUser = async() => await signOut(auth);
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
-
-
-
-
-
-
-
-
 
 
 // Google Authentication
