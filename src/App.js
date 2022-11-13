@@ -6,33 +6,16 @@ import Checkout from "./routes/checkout/chekout.component";
 import Navigation from "./routes/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 
-import { onAuthStateChangedListener } from "./utils/firebase/firebase.utils";
-import { createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
-import { getCategoriesAndDocuments } from "./utils/firebase/firebase.utils";
-
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import setCurrentUser from "./store/user/user.action";
-import setCategoriesMap from "./store/categories/categories.action";
-import {updateCartItemsReducer} from "./store/cart/cart.action";
+import { fetchCurrentUserAsync } from "./store/user/user.action";
 
 const App = () => {
   const dispatch = useDispatch();
   // User
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener(async (user) => {
-      if (user) {
-        await createUserDocumentFromAuth(user);
-      }
-      try {
-        dispatch(setCurrentUser(user));
-      } catch (error) {
-        console.log(error);
-      }
-    });
-
-    return unsubscribe;
+    dispatch(fetchCurrentUserAsync());
   }, []);
 
   return (

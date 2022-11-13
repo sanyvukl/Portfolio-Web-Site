@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { signInWithGooglePopup, signInUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
-import Button, {BUTTONS_TYPE_CLASSES} from "../button/button.component";
-import {SignInContainer, ButtonsContainer} from"./sign-in-form.style";
+import Button, { BUTTONS_TYPE_CLASSES } from "../button/button.component";
+import { SignInContainer, ButtonsContainer } from "./sign-in-form.style";
+
+import { useNavigate } from "react-router-dom";
 
 const defaultFormValue = {
   email: "",
@@ -13,6 +15,7 @@ const SingInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormValue);
   const { email, password } = formFields;
   // const { setCurrentUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -48,12 +51,19 @@ const SingInForm = () => {
       );
       // setCurrentUser(user);
       resetFormFields();
+      navigate('/shop');
     } catch (error) {
       checkErrors(error);
     }
   }
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+    try {
+      await signInWithGooglePopup();
+      setTimeout(
+        navigate('/shop'), 100);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

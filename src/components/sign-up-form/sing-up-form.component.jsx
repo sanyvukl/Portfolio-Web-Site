@@ -4,17 +4,20 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import { SignUpContainer } from "./sign-up-form.style";
 
+import { useNavigate } from "react-router-dom";
 
 const defaultFormValue = {
   displayName: "",
   email: "",
   password: "",
   confirmPassword: "",
-}
+};
 
 const SingUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormValue);
   const { displayName, email, password, confirmPassword } = formFields;
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -33,6 +36,7 @@ const SingUpForm = () => {
     try {
       const { user } = await createAuthUserWithEmailAndPassword(email, password);
       await createUserDocumentFromAuth(user, { displayName });
+      navigate("/shop");
       resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
