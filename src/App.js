@@ -1,12 +1,23 @@
 import React from "react";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./routes/home/home.component";
 import Shop from "./routes/shop/shop.component";
 import Checkout from "./routes/checkout/chekout.component";
 import Navigation from "./routes/navigation/navigation.component";
 import Authentication from "./routes/authentication/authentication.component";
 
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { fetchCurrentUserAsync } from "./store/user/user.action";
+
 const App = () => {
+  const dispatch = useDispatch();
+  // User
+  useEffect(() => {
+    dispatch(fetchCurrentUserAsync());
+  }, []);
+
   return (
     <div>
       <Routes>

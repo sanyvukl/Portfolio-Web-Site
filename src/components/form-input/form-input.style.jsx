@@ -17,7 +17,7 @@ export const FormInputLabel = styled.label`
     left: 5px;
     top: 10px;
     transition: 300ms ease all;
-    /* ${function({shrink}){return shrink && shrinkLabelStyles}}; */
+    ${function({shrink}){return shrink && shrinkLabelStyles}};
 `;
 export const Input = styled.input`
     background: none;
