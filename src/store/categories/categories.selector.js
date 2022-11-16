@@ -16,11 +16,10 @@ export const selectCategoriesMap = createSelector(
       return acc;
     },{})
 );
-
 export const selectCategoriesIsLoading = createSelector(
   [selectCategoryReducer],
   (categoriesSlice) => categoriesSlice.isLoading
-)
+);
 // Not wise
 // export const selectCategoriesMap = (state) => {
 //   console.log("fired selector categories");
