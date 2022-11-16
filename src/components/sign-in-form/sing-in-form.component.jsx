@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import { signInWithGooglePopup, signInUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button, { BUTTONS_TYPE_CLASSES } from "../button/button.component";
 import { SignInContainer, ButtonsContainer } from "./sign-in-form.style";
 
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { emailSignInStart, googleSignInStart } from "../../store/user/user.action";
+
 
 const defaultFormValue = {
   email: "",
   password: "",
-}
+};
 
 const SingInForm = () => {
+  const dispatch = useDispatch();
+
   const [formFields, setFormFields] = useState(defaultFormValue);
   const { email, password } = formFields;
-  // const { setCurrentUser } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -23,7 +24,7 @@ const SingInForm = () => {
   };
   const resetFormFields = () => {
     setFormFields(defaultFormValue);
-  }
+  };
   function checkErrors(error) {
     switch (error.code) {
       case "auth/wrong-password":
@@ -41,30 +42,19 @@ const SingInForm = () => {
     }
 
 
-  }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signInUserWithEmailAndPassword(
-        email,
-        password
-      );
-      // setCurrentUser(user);
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
-      navigate('/shop');
     } catch (error) {
       checkErrors(error);
     }
-  }
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithGooglePopup();
-      setTimeout(
-        navigate('/shop'), 100);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  };
+  const signInWithGoogle = () => {
+    dispatch(googleSignInStart());
+  };
 
   return (
     <SignInContainer>
@@ -94,8 +84,7 @@ const SingInForm = () => {
           </Button>
         </ButtonsContainer>
       </form>
-    </SignInContainer>
-  );
+    </SignInContainer>)
 };
 
 export default SingInForm;

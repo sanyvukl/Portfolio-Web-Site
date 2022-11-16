@@ -14,7 +14,7 @@ const CategoryPreview = ({ title, products }) => {
             <Preview>
                 {products.slice(0, 4).map((product) => {
                     return <ProductCard key={product.id} product={product} />
-                })};
+                })}
             </Preview>
         </CategoryPreviewContainer>
     );
