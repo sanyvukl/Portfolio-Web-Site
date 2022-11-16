@@ -11,14 +11,14 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
-import { userLogOut } from "../../store/user/user.action";
+import { userSignOutStart } from "../../store/user/user.action";
 
 const Navigation = () => {
   const dispatch = useDispatch();
 
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
-  const handleLogOut = () => dispatch(userLogOut());
+  const handleLogOut = () => dispatch(userSignOutStart());
 
   return (
     <Fragment>

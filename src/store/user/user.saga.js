@@ -5,8 +5,8 @@ import {
   signInFailed,
   signUpSuccess,
   signUpFailed,
-  userLogOut,
-  emailSignInStart,
+  userSignOutSuccess,
+  userSignOutFailed,
 } from "./user.action";
 import {
   createUserDocumentFromAuth,
@@ -19,7 +19,11 @@ import {
 
 export function* getSnapshotFromUserAuth(userAuth, additionalInfo) {
   try {
-    const userSnapshot = yield call(createUserDocumentFromAuth, userAuth, additionalInfo);
+    const userSnapshot = yield call(
+      createUserDocumentFromAuth,
+      userAuth,
+      additionalInfo
+    );
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
     yield put(signInFailed(error));
@@ -54,7 +58,7 @@ export function* signUpUser({ payload }) {
       email,
       password
     );
-    yield put(signUpSuccess(user, {displayName}));
+    yield put(signUpSuccess(user, { displayName }));
   } catch (error) {
     yield put(signUpFailed(error));
     if (error.code === "auth/email-already-in-use") {
@@ -77,11 +81,12 @@ export function* isUserAuthenticated() {
     yield put(signInFailed(error));
   }
 }
-export function* logOut() {
+export function* signOut() {
   try {
     yield call(signOutUser);
+    yield put(userSignOutSuccess());
   } catch (error) {
-    throw new Error("Cant log out ", error);
+    yield put(userSignOutFailed(error));
   }
 }
 export function* onSignUpStart() {
@@ -99,8 +104,8 @@ export function* onGoogleSignInStart() {
 export function* onEmailSignInStart() {
   yield takeLatest(USER_ACTION_TYPES.EMAIL_SIGN_IN_START, signInWithEmail);
 }
-export function* onLogOut() {
-  yield takeLatest(USER_ACTION_TYPES.LOG_OUT, logOut);
+export function* onSignOutStart() {
+  yield takeLatest(USER_ACTION_TYPES.SIGN_OUT_START, signOut);
 }
 export function* userSaga() {
   yield all([
@@ -109,6 +114,6 @@ export function* userSaga() {
     call(onEmailSignInStart),
     call(onSignUpStart),
     call(onSignUpSuccess),
-    call(onLogOut),
+    call(onSignOutStart),
   ]);
 }
