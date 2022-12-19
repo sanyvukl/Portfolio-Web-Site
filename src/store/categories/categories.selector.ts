@@ -1,31 +1,23 @@
 import { createSelector } from "reselect";
+import { CategoriesState } from "./categories.reducer";
+import { CategoryMap } from "./categories.types";
 
-const selectCategoryReducer = (state) => state.categories;
+const selectCategoryReducer = (state: any):CategoriesState => state.categories;
 
 export const selectCategories = createSelector(
   [selectCategoryReducer],
   (categoriesSlice) => categoriesSlice.categories
 );
-//CreateSelector the same like useState() action performs when dependicy's state changes
 export const selectCategoriesMap = createSelector(
   [selectCategories],
-  (categories) =>
+  (categories): CategoryMap =>
     categories.reduce((acc, category) => {
       const { title, items } = category;
       acc[title.toLowerCase()] = items;
       return acc;
-    },{})
+    },{} as CategoryMap)
 );
 export const selectCategoriesIsLoading = createSelector(
   [selectCategoryReducer],
   (categoriesSlice) => categoriesSlice.isLoading
 );
-// Not wise
-// export const selectCategoriesMap = (state) => {
-//   console.log("fired selector categories");
-//   return state.categories.categories.reduce((acc, category) => {
-//     const { title, items } = category;
-//     acc[title.toLowerCase()] = items;
-//     return acc;
-//   }, {});
-// };
